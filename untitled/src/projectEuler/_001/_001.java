@@ -21,21 +21,22 @@ public class _001 {
 
     // getMultiples returns a LinkedList of all multiples
     // of 3 or 5 up until the it's input cap
-    private static ArrayList getMultiples (int cap){
-        ArrayList<Integer> multiples = new ArrayList<Integer>();
-        for (int i = 3; i <= cap; i++)
+    private static int getMultiples (int cap){
+        int sum = 0;
+        for (int i = 1; i <= cap; i++)
         {
-            if (i % 3 == 0 | i % 5 == 0)
+            if (i % 3 == 0 || i % 5 == 0)
             {
-                multiples.add(i);
+                sum = sum + i;
             }
         }
-        return multiples;
+        return sum;
     }
 
     public static void main (String[] args){
-        ArrayList multiplesList = getMultiples(1000);
-        System.out.println(multiplesList);
+        int sum = getMultiples(1000);
+
+        System.out.println(sum);
 
     }
 }
