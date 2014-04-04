@@ -22,7 +22,7 @@ public class _001 {
     // getMultiples returns a LinkedList of all multiples
     // of 3 or 5 up until the it's input cap
     private static LinkedList getMultiples (int cap){
-        LinkedList multiples = new java.util.LinkedList();
+        LinkedList<Integer> multiples = new java.util.LinkedList<Integer>();
         for (int i = 3; i <= cap; i++)
         {
             if (i % 3 == 0 | i % 5 == 0)
