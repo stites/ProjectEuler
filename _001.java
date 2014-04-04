@@ -1,5 +1,3 @@
-package projectEuler._001;
-
 /**
  * Created with IntelliJ IDEA.
  * User: stites
