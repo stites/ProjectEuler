@@ -1,5 +1,5 @@
 package projectEuler._001;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,21 +21,21 @@ public class _001 {
 
     // getMultiples returns a LinkedList of all multiples
     // of 3 or 5 up until the it's input cap
-    private static LinkedList getMultiples (int cap){
-        LinkedList<Integer> multiples = new java.util.LinkedList<Integer>();
+    private static ArrayList getMultiples (int cap){
+        ArrayList<Integer> multiples = new ArrayList<Integer>();
         for (int i = 3; i <= cap; i++)
         {
             if (i % 3 == 0 | i % 5 == 0)
             {
                 multiples.add(i);
-
             }
         }
         return multiples;
     }
 
     public static void main (String[] args){
-        LinkedList multiplesList = getMultiples(1000);
+        ArrayList multiplesList = getMultiples(1000);
+        System.out.println(multiplesList);
 
     }
 }
