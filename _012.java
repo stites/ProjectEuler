@@ -19,8 +19,37 @@
  *
  * What is the value of the first triangle number to have over five hundred divisors?
  */
-public class _012 {
-  public static void main (String[] args){
+import java.util.ArrayList;
 
+public class _012 {
+  // write a function that finds all factors of a given number and returns the count of factors
+  public static int countFactors (int num){
+    ArrayList factors = new ArrayList (); // start at 2 because you have to include yourself and 1
+    for (int i = 1; i <= num; i++) {
+        if (num % i == 0) {
+          factors.add(i);
+        }
+    }
+    return factors.size();
+  }
+
+  public static void main (String[] args){
+  int cap = 500;
+  int triangleIdx = 50;
+  int triangle = 1;
+  int factors = 0;
+
+  // write a function which generates all triangle numbers until a condition (in a while loop)
+  while (factors < cap) {
+    triangle = triangleIdx * (triangleIdx + 1) / 2;
+    if (triangleIdx % 500 == 0 ) System.out.println( String.format("%s\t:%s\t:%s", triangleIdx, triangle, factors ));
+    triangleIdx++;
+    factors = countFactors(triangle);
+  }
+    // create a boolean which checks whether or not the cap for the number of factors has been met
+    // invoke the facots function
+    // chnage the truthy value or not
+  // output to the system whether or not the
+  System.out.println( triangle );
   }
 }
