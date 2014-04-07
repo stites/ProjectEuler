@@ -30,6 +30,7 @@ public class _012 {
           factors.add(i);
         }
     }
+    // if (triangleIdx % 500 == 0 ) System.out.println( factors );
     return factors.size();
   }
 
@@ -37,11 +38,11 @@ public class _012 {
     // the logger
     int cap = 500;
     // starting point
-    int triangleIdx = 8000;
+    int triangleIdx = 1;
     // triangle number itself
-    int triangle = 1;
+    int triangle = triangleIdx * (triangleIdx + 1) / 2;
     // the number of factors (for logger)
-    int factors = 0;
+    int factors = countFactors(triangle);
 
     // generates all triangle numbers until a condition (in a while loop)
     // condition on whether or not the cap for the number of factors has been met
@@ -50,10 +51,10 @@ public class _012 {
       triangle = triangleIdx * (triangleIdx + 1) / 2;
       // system output for debugging
       if (triangleIdx % 500 == 0 ) System.out.println( String.format("%s\t:%s\t:%s", triangleIdx, triangle, factors ));
-      // increase index for the next triangle number
-      triangleIdx++;
       // invoke the countFactors function
       factors = countFactors(triangle);
+      // increase index for the next triangle number
+      triangleIdx++;
     }
     // output to the system whether or not the
     System.out.println( triangle );
