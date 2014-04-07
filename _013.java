@@ -120,7 +120,8 @@ public class _013
     while ((line = br.readLine()) != null){
       sum = sum.add(new BigInteger(line));
     }
-    System.out.println(sum);
+    String strSum = sum.toString();
+    System.out.println(strSum.substring(0,10));
     br.close();
   }
 }
