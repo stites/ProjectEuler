@@ -116,10 +116,11 @@ public class _013
   {
     BufferedReader br = new BufferedReader(new FileReader("./one-hundred_50-digit_numbers.txt"));
     String line = null;
-    BigInteger sum = new BigInteger("1001023092");
+    BigInteger sum = new BigInteger("0");
     while ((line = br.readLine()) != null){
-      System.out.println(line);
+      sum = sum.add(new BigInteger(line));
     }
+    System.out.println(sum);
     br.close();
   }
 }
