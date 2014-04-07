@@ -34,22 +34,28 @@ public class _012 {
   }
 
   public static void main (String[] args){
-  int cap = 500;
-  int triangleIdx = 50;
-  int triangle = 1;
-  int factors = 0;
+    // the logger
+    int cap = 500;
+    // starting point
+    int triangleIdx = 50;
+    // triangle number itself
+    int triangle = 1;
+    // the number of factors (for logger)
+    int factors = 0;
 
-  // write a function which generates all triangle numbers until a condition (in a while loop)
-  while (factors < cap) {
-    triangle = triangleIdx * (triangleIdx + 1) / 2;
-    if (triangleIdx % 500 == 0 ) System.out.println( String.format("%s\t:%s\t:%s", triangleIdx, triangle, factors ));
-    triangleIdx++;
-    factors = countFactors(triangle);
-  }
-    // create a boolean which checks whether or not the cap for the number of factors has been met
-    // invoke the facots function
-    // chnage the truthy value or not
-  // output to the system whether or not the
-  System.out.println( triangle );
+    // generates all triangle numbers until a condition (in a while loop)
+    // condition on whether or not the cap for the number of factors has been met
+    while (factors < cap) {
+      // generate a triangle number
+      triangle = triangleIdx * (triangleIdx + 1) / 2;
+      // system output for debugging
+      if (triangleIdx % 500 == 0 ) System.out.println( String.format("%s\t:%s\t:%s", triangleIdx, triangle, factors ));
+      // increase index for the next triangle number
+      triangleIdx++;
+      // invoke the countFactors function
+      factors = countFactors(triangle);
+    }
+    // output to the system whether or not the
+    System.out.println( triangle );
   }
 }
