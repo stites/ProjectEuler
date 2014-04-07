@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class _012 {
   // write a function that finds all factors of a given number and returns the count of factors
   public static int countFactors (int num){
-    ArrayList factors = new ArrayList (); // start at 2 because you have to include yourself and 1
+    ArrayList<Integer> factors = new ArrayList<Integer> (); // start at 2 because you have to include yourself and 1
     for (int i = 1; i <= num; i++) {
         if (num % i == 0) {
           factors.add(i);
@@ -37,7 +37,7 @@ public class _012 {
     // the logger
     int cap = 500;
     // starting point
-    int triangleIdx = 50;
+    int triangleIdx = 8000;
     // triangle number itself
     int triangle = 1;
     // the number of factors (for logger)
