@@ -108,10 +108,12 @@
  */
 import java.io.*;
 
-public class _013 {
-  public static void main (String[] args){
+public class _013
+{
+  public static void main (String[] args) throws Exception
+  {
     BufferedReader br = new BufferedReader(new FileReader("./one-hundred_50-digit_numbers.txt"));
-    String line;
+    String line = null;
     while ((line = br.readLine()) != null){
       System.out.println(line);
     }
