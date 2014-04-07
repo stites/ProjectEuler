@@ -106,7 +106,9 @@
  *
  * (moved to ./one-hundred 50-digit numbers.txt)
  */
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.math.BigInteger;
 
 public class _013
 {
@@ -114,6 +116,7 @@ public class _013
   {
     BufferedReader br = new BufferedReader(new FileReader("./one-hundred_50-digit_numbers.txt"));
     String line = null;
+    BigInteger sum = new BigInteger("1001023092");
     while ((line = br.readLine()) != null){
       System.out.println(line);
     }
