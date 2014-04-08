@@ -31,16 +31,16 @@ public class _014 {
     int length = 1;
     int cachedCollatz = collatz;
     while (collatz > 1) {
-      if ( !cache.containsKey(collatz) ) {
+      //if ( !cache.containsKey(collatz) ) {
         collatz = nextCollatz(collatz);
         length++;
         //System.out.printf("new %d:\t%d\n",length, collatz);
-      } else {
-        length += cache.get(collatz);
+      //} else {
+        //length += cache.get(collatz);
         //System.out.printf("old %d:\t%d\n",length, collatz);
-        cache.put(cachedCollatz, length);
-        break;
-      }
+        //cache.put(cachedCollatz, length);
+       // break;
+      //}
     }
     return length;
   }
@@ -51,11 +51,12 @@ public class _014 {
     int len;
     do {
       len = collatzLength(cap);
-      if (longestLen < len) {
+      if (longestLen <= len) {
         longestLen = len;
         longestCol = cap;
       }
       cap--;
+      System.out.printf(":long: %d\t:llen: %d\t:col: %d\t:len: %d\n",longestCol, longestLen, cap, len);
     } while (cap > 1);
     return longestCol;
   }
