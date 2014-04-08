@@ -34,10 +34,10 @@ public class _014 {
       if ( !cache.containsKey(collatz) ) {
         collatz = nextCollatz(collatz);
         length++;
-        System.out.printf("new %d:\t%d\n",length, collatz);
+        //System.out.printf("new %d:\t%d\n",length, collatz);
       } else {
         length += cache.get(collatz);
-        System.out.printf("old %d:\t%d\n",length, collatz);
+        //System.out.printf("old %d:\t%d\n",length, collatz);
         cache.put(cachedCollatz, length);
         break;
       }
@@ -45,8 +45,23 @@ public class _014 {
     return length;
   }
 
+  public static int longestCollatz(int cap){
+    int longestLen = 0;
+    int longestCol = cap;
+    int len;
+    do {
+      len = collatzLength(cap);
+      if (longestLen < len) {
+        longestLen = len;
+        longestCol = cap;
+      }
+      cap--;
+    } while (cap > 1);
+    return longestCol;
+  }
+
   public static void main (String[] args){
     int x = Integer.parseInt(args[0]);
-    System.out.println(collatzLength(x));
+    System.out.println(longestCollatz(x));
   }
 }
