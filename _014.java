@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 public class _014 {
 
-  private HashMap cache = new HashMap();
+  private static HashMap<Integer, Integer> cache = new HashMap<Integer, Integer>();
 
   private static int nextCollatz(int n){
     return (n % 2 == 0) ? n/2 : 3*n+1;
@@ -29,10 +29,18 @@ public class _014 {
 
   private static int collatzLength(int collatz){
     int length = 1;
+    int cachedCollatz = collatz;
     while (collatz > 1) {
-      // System.out.printf("idx %d:\t%d\n",length, collatz);
-      collatz = nextCollatz(collatz);
-      length++;
+      if ( !cache.containsKey(collatz) ) {
+        collatz = nextCollatz(collatz);
+        length++;
+        System.out.printf("new %d:\t%d\n",length, collatz);
+      } else {
+        length += cache.get(collatz);
+        System.out.printf("old %d:\t%d\n",length, collatz);
+        cache.put(cachedCollatz, length);
+        break;
+      }
     }
     return length;
   }
