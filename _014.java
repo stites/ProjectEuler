@@ -17,8 +17,11 @@
  *
  * NOTE: Once the chain starts the terms are allowed to go above one million.
  */
+import java.util.HashMap;
 
 public class _014 {
+
+  private HashMap cache = new HashMap();
 
   private static int nextCollatz(int n){
     return (n % 2 == 0) ? n/2 : 3*n+1;
