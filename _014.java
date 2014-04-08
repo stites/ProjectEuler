@@ -19,10 +19,23 @@
  */
 
 public class _014 {
-  private static int nextCollatz(int n){
-    return (n % 2 == 0) ? n/2 : 3n+1;
-  }
-  public static void main (String[] args){
 
+  private static int nextCollatz(int n){
+    return (n % 2 == 0) ? n/2 : 3*n+1;
+  }
+
+  private static int collatzLength(int collatz){
+    int length = 1;
+    while (collatz > 1) {
+      // System.out.printf("idx %d:\t%d\n",length, collatz);
+      collatz = nextCollatz(collatz);
+      length++;
+    }
+    return length;
+  }
+
+  public static void main (String[] args){
+    int x = Integer.parseInt(args[0]);
+    System.out.println(collatzLength(x));
   }
 }
