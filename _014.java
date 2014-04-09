@@ -18,19 +18,24 @@
  * NOTE: Once the chain starts the terms are allowed to go above one million.
  */
 import java.util.HashMap;
+import java.math.BigInteger;
 
 public class _014 {
 
   private static HashMap<Integer, Integer> cache = new HashMap<Integer, Integer>();
 
-  private static int nextCollatz(int n){
-    return (n % 2 == 0) ? n/2 : 3*n+1;
+  private static BigInteger nextCollatz(BigInteger n){
+    BigInteger two = BigInteger.valueOf(2);
+    BigInteger three = BigInteger.valueOf(3);
+    BigInteger one = BigInteger.ONE;
+    BigInteger zero = BigInteger.ZERO;
+    return (n.mod(two).compareTo(zero) == 0) ? n.divide(two) : n.multiply(three).add(one);
   }
 
-  private static int collatzLength(int collatz){
+  private static int collatzLength(BigInteger collatz){
     int length = 1;
-    int cachedCollatz = collatz;
-    while (collatz > 1) {
+    BigInteger cachedCollatz = collatz;
+    while (collatz.compareTo(BigInteger.ONE) > 0) {
       //if ( !cache.containsKey(collatz) ) {
         collatz = nextCollatz(collatz);
         length++;
@@ -45,9 +50,9 @@ public class _014 {
     return length;
   }
 
-  public static int longestCollatz(int cap){
+  public static BigInteger longestCollatz(BigInteger cap){
     int longestLen = 0;
-    int longestCol = cap;
+    BigInteger longestCol = cap;
     int len;
     do {
       len = collatzLength(cap);
@@ -55,14 +60,14 @@ public class _014 {
         longestLen = len;
         longestCol = cap;
       }
-      cap--;
+      cap = cap.subtract(BigInteger.ONE);
       System.out.printf(":long: %d\t:llen: %d\t:col: %d\t:len: %d\n",longestCol, longestLen, cap, len);
-    } while (cap > 1);
+    } while (cap.compareTo(BigInteger.ONE) > 0);
     return longestCol;
   }
 
   public static void main (String[] args){
-    int x = Integer.parseInt(args[0]);
+    BigInteger x = new BigInteger(args[0]);
     System.out.println(longestCollatz(x));
   }
 }
