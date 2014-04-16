@@ -12,34 +12,30 @@ public class _016 {
     String str = n.toString();
     // for loop to iterate over each number in the array
     int sum = 0;
-    for (int i = 0; i < str.length()-1; i++){
+    for (int i = 0; i < str.length(); i++){
       sum += Character.getNumericValue(str.charAt(i));
     }
     return sum;
   }
 
-  public static BigInteger getSecondPower (int cap) {
-    BigInteger result = BigInteger.ONE;
-    StringBuffer chunk = new StringBuffer("10");
-    do {
-      for (int i=0; cap > 0; cap--, i=(i+1) % 7){
-        if (i == 0){
-          Byte b = Byte.decode(chunk.toString());
-          int bint = b.intValue();
-          result = result.multiply( BigInteger.valueOf(bint));
-          chunk = new StringBuffer("1");
-        }
-        chunk.append("0");
-      }
-    } while (cap > 7);
-    return BigInteger.valueOf(cap);
+  public static BigInteger getSecondPower (BigInteger cap) {
+    BigInteger two = BigInteger.valueOf(2);
+    BigInteger one = BigInteger.ONE;
+    BigInteger zero = BigInteger.ZERO;
+    BigInteger result = one;
+
+    while (cap.compareTo(zero) > 0){
+      result = result.multiply(two);
+      cap = cap.subtract(one);
+    }
+    return result;
   }
 
   public static void main (String[] args){
-    int x = Integer.parseInt(args[0]);
+    BigInteger x = new BigInteger(args[0]);
     BigInteger n = getSecondPower(x);
     System.out.println(n);
-    //int sum = sumDigits(n);
-    //System.out.println(sum);
+    int sum = sumDigits(n);
+    System.out.println(sum);
   }
 }
