@@ -19,13 +19,25 @@ public class _016 {
   }
 
   public static BigInteger getSecondPower (int cap) {
+    BigInteger result = BigInteger.ONE;
+    StringBuffer chunk = new StringBuffer('1');
+    do {
+      for (int i=0; cap > 0; cap--, i=(i+1) % 7){
+        if (i == 0){
+          result = result.multiply( BigInteger.valueOf(new Byte(chunk.toString())));
+          chunk = new StringBuffer('1');
+        }
+        chunk.append('0');
+      }
+    } while (cap > 7);
     return BigInteger.valueOf(cap);
   }
 
   public static void main (String[] args){
     int x = Integer.parseInt(args[0]);
     BigInteger n = getSecondPower(x);
-    int sum = sumDigits(n);
-    System.out.println(sum);
+    System.out.println(n);
+    //int sum = sumDigits(n);
+    //System.out.println(sum);
   }
 }
