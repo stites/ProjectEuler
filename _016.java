@@ -12,18 +12,18 @@ public class _016 {
     String str = n.toString();
     // for loop to iterate over each number in the array
     int sum = 0;
-    for (int i = 0; i < str.length; i++){
-      sum += parseInt(str[i]);
+    for (int i = 0; i < str.length()-1; i++){
+      sum += Character.getNumericValue(str.charAt(i));
     }
-    // return the sum
+    return sum;
   }
 
   public static BigInteger getSecondPower (int cap) {
-
+    return BigInteger.valueOf(cap);
   }
 
   public static void main (String[] args){
-    int x = parseInt(args);
+    int x = Integer.parseInt(args[0]);
     BigInteger n = getSecondPower(x);
     int sum = sumDigits(n);
     System.out.println(sum);
