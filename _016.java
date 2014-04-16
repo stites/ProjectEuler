@@ -20,14 +20,16 @@ public class _016 {
 
   public static BigInteger getSecondPower (int cap) {
     BigInteger result = BigInteger.ONE;
-    StringBuffer chunk = new StringBuffer('1');
+    StringBuffer chunk = new StringBuffer("10");
     do {
       for (int i=0; cap > 0; cap--, i=(i+1) % 7){
         if (i == 0){
-          result = result.multiply( BigInteger.valueOf(new Byte(chunk.toString())));
-          chunk = new StringBuffer('1');
+          Byte b = Byte.decode(chunk.toString());
+          int bint = b.intValue();
+          result = result.multiply( BigInteger.valueOf(bint));
+          chunk = new StringBuffer("1");
         }
-        chunk.append('0');
+        chunk.append("0");
       }
     } while (cap > 7);
     return BigInteger.valueOf(cap);
