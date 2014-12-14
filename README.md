@@ -1,4 +1,3 @@
-ProjectEuler_java
-=================
+Project Euler Questions
+=======================
 
-Project Euler in Java
