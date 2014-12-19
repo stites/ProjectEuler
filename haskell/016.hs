@@ -1,5 +1,6 @@
 twentyToWords num =
   case num of
+    0 -> ""
     1 -> "one"
     2 -> "two"
     3 -> "three"
@@ -31,6 +32,13 @@ tensToWords num =
     8 -> "eighty"
     9 -> "ninety"
 
+getHeadToInt x = read (head(show x):"") :: Int
+getTailToInt x = read (tail(show x)) :: Int
+numToWords num | num == 0   = ""
+               | num < 20   = twentyToWords num
+               | num < 100  = tensToWords(getHeadToInt(num)) ++ numToWords(getTailToInt(num))
+               | num == 100 = "onehundred"
+               | num < 1000 = twentyToWords(getHeadToInt(num)) ++ "hundredand" ++ numToWords(getTailToInt(num))
+               | True       = twentyToWords(getHeadToInt(num)) ++ "thousand" ++ numToWords(getTailToInt(num))
 
-numToWords num | num < 20 = twentyToWords num
-               | (num < 100) && (num >= 20) = tensToWords(floor(num / 10)) ++ twentyToWords (num `mod` 10)
+solution = length . numToWords
