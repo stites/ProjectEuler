@@ -37,8 +37,9 @@ getTailToInt x = read (tail(show x)) :: Int
 numToWords num | num == 0   = ""
                | num < 20   = twentyToWords num
                | num < 100  = tensToWords(getHeadToInt(num)) ++ numToWords(getTailToInt(num))
-               | num == 100 = "onehundred"
+               | num == 1000= "onethousand"
+               | num `mod` 100 == 0 = twentyToWords(getHeadToInt(num)) ++ "hundred"
                | num < 1000 = twentyToWords(getHeadToInt(num)) ++ "hundredand" ++ numToWords(getTailToInt(num))
-               | True       = twentyToWords(getHeadToInt(num)) ++ "thousand" ++ numToWords(getTailToInt(num))
 
-solution = length . numToWords
+charCount = length . numToWords
+solution = sum [ charCount x | x <- [1..1000] ]
