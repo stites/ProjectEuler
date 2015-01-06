@@ -56,5 +56,6 @@ triangle = [
   [63,66,04,68,89,53,67,30,73,16,69,87,40,31],
   [04,62,98,27,23,09,70,98,73,93,38,53,60,04,23]]
 
-triSums = foldl1 (\acc xs -> zipWith (+) (acc ++ [last acc]) xs )
-maxPathSums = maximum . triSums
+addBigger a x y = a + (max x y)
+maxPathSums = foldr1 (\acc xs -> zipWith3 addBigger acc xs (tail xs) )
+solution = maxPathSums triangle
