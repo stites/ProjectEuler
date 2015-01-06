@@ -58,4 +58,4 @@ triangle = [
 
 addBigger a x y = a + (max x y)
 maxPathSums = foldr1 (\acc xs -> zipWith3 addBigger acc xs (tail xs) )
-solution = maxPathSums triangle
+solution = head (maxPathSums triangle)
