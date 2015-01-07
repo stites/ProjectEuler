@@ -23,3 +23,9 @@ leapCondition yr = (yr `evenlyDivides` 4) && (not (yr `evenlyDivides` 100) || yr
 months yr = if leapCondition yr
             then months_leap
             else months_noleap
+
+nextYear'sFirstSunday year r = (sum (r:(months year))) `mod` 7
+-- 1 Jan 1901 was a Tuesday, [0 == Sun, so Tuesday is a 2]
+firstSunday year = if (year == 1901)
+                   then nextYear'sFirstSunday year 5
+                   else nextYear'sFirstSunday year (firstSunday(year-1))
