@@ -13,4 +13,7 @@
 --
 -- Evaluate the sum of all the amicable numbers under 10000.
 d n = sum [ x | x<-[1..n-1],  ((n `mod` x) == 0)]
-pair a b = (d a == b) && (d b == a)
+pair (a,b) = (d a == b) && (d b == a)
+combos = filter pair [(a,b) | a <- [1..10000], b <- [1..10000], not $ a == b ]
+
+solution = foldl1 (\acc (a,b) -> (fst acc + a, snd acc + b)) combos
