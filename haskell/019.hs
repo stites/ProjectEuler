@@ -14,6 +14,9 @@
 --   unless it is divisible by 400.
 --
 -- How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+import Data.Time.Calendar
+import Data.Time.Calendar.WeekDate
+
 months_noleap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 months_leap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
@@ -24,10 +27,9 @@ months yr = if leapCondition yr
             then months_leap
             else months_noleap
 
-nextYear'sFirstSunday year r = (+) r $ (sum (months year)) `mod` 7
--- 1 Jan 1901 was a Tuesday, [0 == Sun, so Tuesday is a 2]
-firstSunday year = if (year == 1901)
-                   then nextYear'sFirstSunday 1900 4
-                   else nextYear'sFirstSunday year (firstSunday(year-1))
-sundaysInAYear year = ((+) 31 $ firstSunday year) `mod` 7
-solution = sum [sundaysInAYear x | x <- [1901..2000]]
+-- 1 for Monday to 7 for Sunday, also this:
+-- https://stackoverflow.com/questions/15558278/how-to-get-nth-element-from-a-10-tuple-in-haskell
+firstDay year = let (_, _, d) = toWeekDate(fromGregorian year 1 1) in d :: Int
+
+sundaysInJan year = (31 + (firstDay year) - 1) `div` 7
+-- solution = []
