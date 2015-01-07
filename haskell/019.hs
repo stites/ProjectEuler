@@ -29,7 +29,7 @@ months yr = if leapCondition yr
 
 -- 1 for Monday to 7 for Sunday, also this:
 -- https://stackoverflow.com/questions/15558278/how-to-get-nth-element-from-a-10-tuple-in-haskell
-firstDay year = let (_, _, d) = toWeekDate(fromGregorian year 1 1) in d :: Int
+firstDay year month = let (_, _, d) = toWeekDate(fromGregorian year month 1) in d :: Int
 
-sundaysInJan year = (31 + (firstDay year) - 1) `div` 7
--- solution = []
+allFirstSundays = filter (==7) [ firstDay y m | y <- [1901..2000], m<-[1..12]]
+solution = length allFirstSundays
