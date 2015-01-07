@@ -24,10 +24,10 @@ months yr = if leapCondition yr
             then months_leap
             else months_noleap
 
-nextYear'sFirstSunday year r = (sum (r:(months year))) `mod` 7
+nextYear'sFirstSunday year r = (+) r $ (sum (months year)) `mod` 7
 -- 1 Jan 1901 was a Tuesday, [0 == Sun, so Tuesday is a 2]
 firstSunday year = if (year == 1901)
-                   then nextYear'sFirstSunday year 5
+                   then nextYear'sFirstSunday 1900 4
                    else nextYear'sFirstSunday year (firstSunday(year-1))
 sundaysInAYear year = ((+) 31 $ firstSunday year) `mod` 7
 solution = sum [sundaysInAYear x | x <- [1901..2000]]
