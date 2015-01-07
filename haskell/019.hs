@@ -29,3 +29,5 @@ nextYear'sFirstSunday year r = (sum (r:(months year))) `mod` 7
 firstSunday year = if (year == 1901)
                    then nextYear'sFirstSunday year 5
                    else nextYear'sFirstSunday year (firstSunday(year-1))
+sundaysInAYear year = ((+) 31 $ firstSunday year) `mod` 7
+solution = sum [sundaysInAYear x | x <- [1901..2000]]
