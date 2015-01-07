@@ -17,8 +17,8 @@
 months_noleap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 months_leap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-evenlyDivides x y = 0 == x `mod` y
-leapCondition yr = yr `evenlyDivides` 4 && (not yr `evenlyDivides` 100 || yr `evenlyDivides` 400)
+evenlyDivides x y = ( x `mod` y ) == 0
+leapCondition yr = (yr `evenlyDivides` 4) && (not (yr `evenlyDivides` 100) || yr `evenlyDivides` 400)
 
 months yr = if leapCondition yr
             then months_leap
