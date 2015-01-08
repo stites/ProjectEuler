@@ -15,7 +15,7 @@
 d n = sum [ x | x<-[1..n `div` 2],  n `mod` x == 0]
 a   = [ 0..10000 ]
 da  = [ d x | x <- a  ]
-amicable x y = (not $ x == y) && (y == (da!!x)) && (x == (da!!y))
+amicable x y = y < 10000 && (not $ x == y) && (y == (da!!x)) && (x == (da!!y))
 pairSums = [ x + y | x <- a, y <- da, amicable x y ]
 solution = sum pairSums
 
