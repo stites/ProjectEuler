@@ -19,3 +19,7 @@ da  = [ d x | x <- a  ]
 amicable x y = (not $ x == y) && (y == (da!!x)) && (x == (da!!y))
 pairSums = [ x + y | x <- a, y <- da, amicable x y ]
 solution = sum pairSums
+
+-- elegant
+dda = [ d x | x <- da ]
+solution2 = sum [ x+y | x<-a, y<-da, (not (x == y)) && (dda!!x == x)]
