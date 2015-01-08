@@ -12,7 +12,7 @@
 -- 71 and 142; so d(284) = 220.
 --
 -- Evaluate the sum of all the amicable numbers under 10000.
-d n = sum [ x | x<-[1..n-1],  ((n `mod` x) == 0)]
+d n = sum [ x | x<-[1..n `div` 2],  n `mod` x == 0]
 pair a b = (not $ a == b) && (d a == b) && (d b == a)
 a   = [ 0..10000 ]
 da  = [ d x | x <- a  ]
