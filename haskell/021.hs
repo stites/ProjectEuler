@@ -14,8 +14,8 @@
 -- Evaluate the sum of all the amicable numbers under 10000.
 d n = sum [ x | x<-[1..n-1],  ((n `mod` x) == 0)]
 pair a b = (not $ a == b) && (d a == b) && (d b == a)
-a = [2..10000]
-da = [ d x | x <- a ]
-amicable x dx = (not $ x == dx) && (dx == (a!!dx)) && (x == (da!!x))
+a   = [ 0..10000 ]
+da  = [ d x | x <- a  ]
+amicable x y = (not $ x == y) && (y == (da!!x)) && (x == (da!!y))
 pairSums = [ x + y | x <- a, y <- da, amicable x y ]
 solution = sum pairSums
