@@ -12,4 +12,7 @@
 
 -- What is the total of all the name scores in the file?
 import Data.List
-input = sort ( read( "["++ (readFile "names.txt") ++"]" ) )
+import Data.Char
+getLines p = do
+  file <- readFile p
+  return sort ( read  ("[" ++ file ++ "]") )
