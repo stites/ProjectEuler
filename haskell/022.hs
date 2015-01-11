@@ -16,5 +16,6 @@ import Data.Char
 getNames = do
   nIO <- readFile "names.txt"
   let ns = sort $ read $ nIO
-  let nscores = map (\ w -> map (\ c -> ord c - ord 'A' + 1) w ) ns
+  let nscores = map (\ w -> map charValue w ) ns
   print nscores
+  where charValue c = ord c - ord 'A' + 1
