@@ -16,6 +16,8 @@ import Data.Char
 getNames = do
   nIO <- readFile "names.txt"
   let ns = sort $ read $ nIO
-  let nscores = map (\ w -> map charValue w ) ns
-  print nscores
-  where charValue c = ord c - ord 'A' + 1
+  let nscores = map wordValue ns
+  print $ sum nscores
+  where
+    charValue c = ord c - ord 'A' + 1
+    wordValue w = foldl (\ acc c -> (+) acc (charValue c)) 0 w
