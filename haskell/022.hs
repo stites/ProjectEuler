@@ -13,11 +13,15 @@
 -- What is the total of all the name scores in the file?
 import Data.List
 import Data.Char
-getNames = do
+charValue c = ord c - ord 'A' + 1
+wordValue = foldl (\ acc c -> (+) acc (charValue c)) 0
+getNameScores = map wordValue
+
+sumNameScores = do
   nIO <- readFile "names.txt"
   let ns = sort $ read $ nIO
-  let nscores = map wordValue ns
-  print $ sum nscores
-  where
-    charValue c = ord c - ord 'A' + 1
-    wordValue w = foldl (\ acc c -> (+) acc (charValue c)) 0 w
+  let nscores = getNameScores ns
+  let scores = foldl1
+               (\acc mult -> acc + (mult * (nscores !! (mult-1))))
+               [0..length nscores]
+  print scores
