@@ -13,6 +13,8 @@
 -- What is the total of all the name scores in the file?
 import Data.List
 import Data.Char
-getLines p = do
-  file <- readFile p
-  return sort ( read  ("[" ++ file ++ "]") )
+getNames = do
+  nIO <- readFile "names.txt"
+  let ns = sort $ read $ nIO
+  let nscores = map (\ w -> map (\ c -> ord c - ord 'A' + 1) w ) ns
+  print nscores
