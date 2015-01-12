@@ -24,9 +24,13 @@ cap = 28123
 ns = [ 0..cap ]
 asBool = [ d x > x | x <- ns ]
 as = [ x | x <- ns, asBool!!(fromIntegral x) ]
-isNotASum ss = map
+
+isNotASum = map
            (\ s -> foldl
                    (\ acc a -> acc && (asBool!!fromIntegral(s - a)))
                    True
                    as
-           ) ss
+           ) ns
+notASums = [ x | x <- ns, isNotASum!!(fromIntegral x) ]
+-- solution
+sumNotASums = sum notASums
