@@ -26,11 +26,9 @@ asBool = [ d x > x | x <- ns ]
 as = [ x | x <- ns, asBool!!(fromIntegral x) ]
 
 isNotASum = map
-           (\ s -> foldl
-                   (\ acc a -> acc && (asBool!!fromIntegral(s - a)))
-                   True
-                   as
-           ) ns
+           (\ s -> foldl validateSum True [ s-y | y <- as, s-y > 0])
+           ns
+           where validateSum = (\ acc a -> acc && not (asBool!!fromIntegral(a)))
 notASums = [ x | x <- ns, isNotASum!!(fromIntegral x) ]
 -- solution
 sumNotASums = sum notASums
