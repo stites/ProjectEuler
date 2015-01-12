@@ -30,3 +30,11 @@ fib2 n
   | otherwise = (c*c - a*a, b*b + c*c)
   where (a,b) = fib2 (n `div` 2 - 1)
         c     = a + b
+
+solution digitCap f =
+  let x = fib f in
+    if (x `div` (10 ^ (digitCap-1))) > 1
+    then f
+    else solution digitCap (f+1)
+
+-- solution 1000 1000
