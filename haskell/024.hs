@@ -12,4 +12,4 @@
 
 -- easy!
 import Data.List
-solution = (permutations ['0'..'9']) !! 999999
+solution = (sort $ permutations ['0'..'9']) !! 999999
