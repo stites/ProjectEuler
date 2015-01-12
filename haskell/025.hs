@@ -34,7 +34,7 @@ fib2 n
 solution digitCap f =
   let x = fib f in
     if (x `div` (10 ^ (digitCap-1))) > 1
-    then f
+    then f-1
     else solution digitCap (f+1)
 
 -- solution 1000 1000
