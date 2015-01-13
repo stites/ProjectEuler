@@ -20,3 +20,7 @@
 
 -- found this hint: One more thing to note is that the maximum recurring
 -- cycle length of 1/d is d-1.
+import Text.Printf
+r n =  ( 1/n ) *  (10 ** (n-1))
+solution = do
+  printf "%.100f\n" ( r 70 )
