@@ -20,7 +20,11 @@
 
 -- found this hint: One more thing to note is that the maximum recurring
 -- cycle length of 1/d is d-1.
-import Text.Printf
-r n =  ( 1/n ) *  (10 ** (n-1))
-solution = do
-  printf "%.100f\n" ( r 70 )
+
+longestCycle n d seqL rs =
+  if seqL >= n
+  then rs
+  else let r = n `rem` d in
+    if r == 0
+    then rs
+    else longestCycle (r * 10) d (seqL + 1) (r:rs)
