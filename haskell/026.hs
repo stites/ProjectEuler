@@ -21,10 +21,11 @@
 -- found this hint: One more thing to note is that the maximum recurring
 -- cycle length of 1/d is d-1.
 
-longestCycle n d seqL rs =
+-- http://eli.thegreenplace.net/2009/02/25/project-euler-problem-26
+remainders n d seqL rs =
   if seqL >= n
   then rs
   else let r = n `rem` d in
     if r == 0
     then rs
-    else longestCycle (r * 10) d (seqL + 1) (r:rs)
+    else remainders (r * 10) d (seqL + 1) (r:rs)
