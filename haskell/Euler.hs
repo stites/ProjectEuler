@@ -1,12 +1,19 @@
 module Euler where
-import System.Environment (getArgs)
-import Math.NumberTheory.Primes
+{-# OPTIONS_GHC -O2 #-}
+import Data.Array.Unboxed
+
 divisors n = [ x | x<-[1..n `div` 2],  n `mod` x == 0]
 d = sum . divisors
 
-main = do
-  args <- getArgs
-  let lim = case args of
-        (a:_) -> read a
-        _     -> 1000000
-    print . sum $ takeWhile (<= lim) primes
+-- from 6.2 in:
+-- https://www.haskell.org/haskellwiki/Prime_numbers
+primesToNA n = 2: [i | i <- [3,5..n], ar ! i]
+  where
+    ar = f 5 $ accumArray (\ a b -> False) True (3,n)
+         [(i,()) | i <- [9,15..n]]
+    f p a | q > n = a
+          | True  = if null x then a' else f (head x) a'
+      where q = p*p
+            a' :: UArray Int Bool
+            a'= a // [(i,False) | i <- [q, q+2*p..n]]
+            x = [i | i <- [p+2,p+4..n], a' ! i]
