@@ -19,6 +19,7 @@
 -- cycle in its decimal fraction part.
 
 import Euler
+import Data.List
 
 ps = primesToNA 1000
 
@@ -27,5 +28,4 @@ cycleLen n len = if ((10 ^ len - 1) `mod` n == 0)
                  else if (n*n > len)
                          then cycleLen n (len+1)
                          else 0
-primeCycles = [ (cycleLen n 1, n) | n <- ps ]
-solution = snd $ maximum primeCycles
+solution = maximumBy (\ x y -> compare (cycleLen x 1) (cycleLen y 1) ) ps
