@@ -1,4 +1,4 @@
-module Divisors where
+module Euler where
 import System.Environment (getArgs)
 import Math.NumberTheory.Primes
 divisors n = [ x | x<-[1..n `div` 2],  n `mod` x == 0]
