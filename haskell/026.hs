@@ -28,7 +28,7 @@ import Euler
 ps = primesToNA 1000
 
 cycleLen n len = if ((10 ^ len - 1) `mod` n == 0)
-                 then n-1
+                 then n
                  else if (n > len)
                          then cycleLen n (len+1)
                          else 0
