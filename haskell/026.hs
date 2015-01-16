@@ -32,4 +32,5 @@ cycleLen n len = if ((10 ^ len - 1) `mod` n == 0)
                  else if (n*n > len)
                          then cycleLen n (len+1)
                          else 0
-solution = maximum [ cycleLen n 1 | n <- ps ]
+primeCycles = [ (cycleLen n 1, n) | n <- ps ]
+solution = snd $ maximum primeCycles
