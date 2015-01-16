@@ -32,3 +32,4 @@ cycleLen n len = if ((10 ^ len - 1) `mod` n == 0)
                  else if (n > len)
                          then cycleLen n (len+1)
                          else 0
+solution = maximum [ cycleLen n 1 | n <- ps ]
