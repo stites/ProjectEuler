@@ -18,11 +18,6 @@
 -- Find the value of d < 1000 for which 1/d contains the longest recurring
 -- cycle in its decimal fraction part.
 
--- found this hint: One more thing to note is that the maximum recurring
--- cycle length of 1/d is d-1.
-
--- cancel that - let's just look at fermat's little theorem:
--- https://en.wikipedia.org/wiki/Fermat's_little_theorem
 import Euler
 
 ps = primesToNA 1000
