@@ -21,11 +21,14 @@
 -- found this hint: One more thing to note is that the maximum recurring
 -- cycle length of 1/d is d-1.
 
--- http://eli.thegreenplace.net/2009/02/25/project-euler-problem-26
-remainders n d seqL rs =
-  if seqL >= n
-  then rs
-  else let r = n `rem` d in
-    if r == 0
-    then rs
-    else remainders (r * 10) d (seqL + 1) (r:rs)
+-- cancel that - let's just look at fermat's little theorem:
+-- https://en.wikipedia.org/wiki/Fermat's_little_theorem
+import Euler
+
+ps = primesToNA 1000
+
+cycleLen n len = if (n-len == 1)
+                 then len
+                 else if ((10 ^ len) - 1 `mod` n == 0)
+                      then len
+                      else cycleLen n (len+1)
