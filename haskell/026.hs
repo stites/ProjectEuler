@@ -28,8 +28,8 @@ import Euler
 ps = primesToNA 1000
 
 cycleLen n len = if ((10 ^ len - 1) `mod` n == 0)
-                 then n
-                 else if (n > len)
+                 then len
+                 else if (n*n > len)
                          then cycleLen n (len+1)
                          else 0
 solution = maximum [ cycleLen n 1 | n <- ps ]
