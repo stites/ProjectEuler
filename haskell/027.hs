@@ -25,16 +25,18 @@
 -- that produces the maximum number of primes for consecutive values of n,
 -- starting with n = 0.
 import Euler
+ps = primesToNA 1000000
+isPrime = (flip elem) ps
+
 -- discovery - all bs are primes at n=0
-bs = primesToNA 1000000
-isPrime = (flip elem) bs
+bs = [ p | p <- ps, p < 1000]
 -- if a is odd, b is odd & vice versa at n=1
 as = [ x | x<-[-999..999], x `mod` 2 == 1 ]
 
-seqLen a p n =
-  let x = (n*n)+(a*n)+p in
+seqLen a b n =
+  let x = (n*n)+(a*n)+b in
   if (not $ isPrime(x))
-  then (x, a, p, n)
-  else if (n > p)
-       then (x, a, p, n)
-       else seqLen a p ( n+1 )
+  then (x, a, b, n)
+  else if (n > b)
+       then (x, a, b, n)
+       else seqLen a b ( n+1 )
