@@ -24,5 +24,9 @@
 -- Find the product of the coefficients, a and b, for the quadratic expression
 -- that produces the maximum number of primes for consecutive values of n,
 -- starting with n = 0.
-
-ns n = [ n^n + a*n + b | a <- [-999..999], b <- [-999..999] ]
+import Euler
+-- discovery - all bs are primes at n=0
+bs = primesToNA 1000
+isPrime = (flip elem) bs
+-- if a is odd, b is odd & vice versa at n=1
+as = [ x | x<-[-999..999], x `mod` 2 == 1 ]
