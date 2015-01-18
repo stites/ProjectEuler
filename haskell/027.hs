@@ -42,4 +42,4 @@ seqLen a b n =
        else seqLen a b ( n+1 )
 
 seqs = [ seqLen a b 0 | a <- as, b <- bs ]
-solution = maximum seqs
+solution = let (_, a, b) = maximum seqs in a * b
