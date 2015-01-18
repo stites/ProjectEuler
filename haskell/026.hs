@@ -21,11 +21,13 @@
 import Euler
 import Data.List
 
-ps = primesToNA 1000
+rpTill = reverse . primesToNA
+ps = rpTill 1000
 
 cycleLen n len = if ((10 ^ len - 1) `mod` n == 0)
                  then len
                  else if (n*n > len)
                          then cycleLen n (len+1)
                          else 0
-solution = maximumBy (\ x y -> compare (cycleLen x 1) (cycleLen y 1) ) ps
+ps30 = fst (splitAt 20 ps)
+solution = maximumBy (\ x y -> compare (cycleLen x 1) (cycleLen y 1) ) ps30
