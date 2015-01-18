@@ -17,3 +17,11 @@ primesToNA n = 2: [i | i <- [3,5..n], ar ! i]
             a' :: UArray Int Bool
             a'= a // [(i,False) | i <- [q, q+2*p..n]]
             x = [i | i <- [p+2,p+4..n], a' ! i]
+isprime x | x == 2          = 1
+          | x < 2 || even x = 0
+          | otherwise       = go 3
+ where
+        r = floor $ sqrt $ fromIntegral x
+        go i | i > r          = 1
+             | x == i*div x i = 0        -- really, | rem x i == 0 = 0
+             | otherwise      = go (i+2)
