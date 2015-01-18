@@ -40,3 +40,6 @@ seqLen a b n =
   else if (n > b)
        then (n, a, b)
        else seqLen a b ( n+1 )
+
+seqs = [ seqLen a b 0 | a <- as, b <- bs ]
+solution = maximum seqs
