@@ -31,8 +31,6 @@ isPrime = (flip elem) bs
 -- if a is odd, b is odd & vice versa at n=1
 as = [ x | x<-[-999..999], x `mod` 2 == 1 ]
 
-seqLenByPrimes p = [ (a,n) | n <- [0..p], a<-as, isPrime(n*n+a*n+p) ]
-
 seqLen a p n = if (not $ isPrime(n*n+a*n+p))
                then n
                else if (n > p)
