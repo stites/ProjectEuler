@@ -36,7 +36,7 @@ as = [ x | x<-[-999..999], x `mod` 2 == 1 ]
 seqLen a b n =
   let x = (n*n)+(a*n)+b in
   if (not $ isPrime(x))
-  then (x, a, b, n)
+  then (n, a, b)
   else if (n > b)
-       then (x, a, b, n)
+       then (n, a, b)
        else seqLen a b ( n+1 )
