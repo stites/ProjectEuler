@@ -30,3 +30,5 @@ bs = primesToNA 1000
 isPrime = (flip elem) bs
 -- if a is odd, b is odd & vice versa at n=1
 as = [ x | x<-[-999..999], x `mod` 2 == 1 ]
+
+seqLen x = [ (a,b) | n<-[0..x], b <- bs, a <- as, isPrime(n*n+a*n+b) ]
