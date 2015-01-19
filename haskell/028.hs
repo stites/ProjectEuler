@@ -14,8 +14,9 @@
 -- What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral
 -- formed in the same way?
 
-spiral cap n x y isTravellingX sum = if (n > cap)
+spiral n x y moveX sum = if (x+y > (n*n))
                    then sum
-                   else if (isTravellingX)
-                        then spiral cap (n+x) (x+1) (y+1) False (sum+n)
-                        else spiral cap (n+y) (x+1) (y+1) True (sum+n)
+                   else if (moveX)
+                        then spiral n (x+y) (y) False (sum+x)
+                        else spiral n (x) (y+x) True (sum+y)
+solution = spiral 5 1 1 True 0
