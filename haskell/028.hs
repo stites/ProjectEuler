@@ -16,6 +16,6 @@
 
 ringSum n = if (n == 0)
             then 1
-            else side + side - 2*n + 4*side - 12*n
+            else side + side - 2*n + side - 4*n + side - 6*n
   where
     side = (2*n+1)^2
