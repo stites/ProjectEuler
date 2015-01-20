@@ -14,9 +14,7 @@
 -- What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral
 -- formed in the same way?
 
-spiral n x y moveX sum = if (x+y > (n*n))
-                   then sum
-                   else if (moveX)
-                        then spiral n (x+y) (y) False (sum+x)
-                        else spiral n (x) (y+x) True (sum+y)
-solution = spiral 5 1 1 True 0
+ringSum n | n == 0 = 1
+          | _ = side + side - 2*n + 4*side - 12*n
+           where
+              side = (2*n+1)^2
