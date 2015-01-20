@@ -14,10 +14,6 @@
 -- What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral
 -- formed in the same way?
 
-cornerSum n = 4*side - 12*n
-  where
-    side = (2*n+1)^2
+cornerSum n = 4*side - 12*n where side = (2*n+1)^2
 
-ringSum n = if (n == 0)
-            then 1
-            else cornerSum(n) + ringSum(n-1)
+ringSum n = if (n == 0) then 1 else cornerSum(n) + ringSum(n-1)
