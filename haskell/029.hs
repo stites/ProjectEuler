@@ -21,4 +21,4 @@ bs = [2..100]
 
 ns = intercalate [] (map (\ b -> (map (\ a -> a^b) as) ) bs)
 uniq = Set.fromList ns
-solution = length uniq
+solution = Set.size uniq
