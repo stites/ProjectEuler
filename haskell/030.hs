@@ -14,7 +14,7 @@
 -- powers of their digits.
 import Euler
 
-ns = [2..100000]
+ns = [2..1000000]
 
 sumOfFifthPowerOfDigits n = foldl (\ acc d -> acc + d^5 ) 0 (digits n)
 
