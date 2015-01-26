@@ -25,3 +25,8 @@ isprime x | x == 2          = 1
         go i | i > r          = 1
              | x == i*div x i = 0        -- really, | rem x i == 0 = 0
              | otherwise      = go (i+2)
+
+digitsR :: Integral x => x -> [x]
+digitsR 0 = []
+digitsR x = x `mod` 10 : digitsR (x `div` 10)
+digits = reverse . digitsR
