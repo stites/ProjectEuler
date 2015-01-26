@@ -12,6 +12,14 @@
 --
 -- Find the sum of all the numbers that can be written as the sum of fifth
 -- powers of their digits.
+import Euler
+
+sumOfFifthPowerOfDigits n = foldl (\ acc d -> acc + d^5 ) 0 (digits n)
+ns = foldl (validSum) 0 [2..100000]
+  where
+    validSum acc n = let s = sumOfFifthPowerOfDigits n in
+    if (n == s) then acc + n else acc
+
 
 
 
