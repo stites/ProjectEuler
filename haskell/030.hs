@@ -14,11 +14,15 @@
 -- powers of their digits.
 import Euler
 
+ns = [2..100000]
+
 sumOfFifthPowerOfDigits n = foldl (\ acc d -> acc + d^5 ) 0 (digits n)
-ns = foldl (validSum) 0 [2..100000]
-  where
-    validSum acc n = let s = sumOfFifthPowerOfDigits n in
-    if (n == s) then acc + n else acc
+
+validateSum acc n = let
+    s = sumOfFifthPowerOfDigits n
+  in if (n == s) then acc + n else acc
+
+solution = foldl (validateSum) 0 ns
 
 
 
