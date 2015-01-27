@@ -15,8 +15,14 @@
 import Euler
 import qualified Data.Set as Set
 
+maxNum = 987654321
+
 isPandigital n = let
     ns = digits n
     set = Set.fromList ns
   in
     Set.size set == length ns
+
+pds = [ x | x <- [1..maxNum], isPandigital x ]
+
+solution = length [ a * b | a <- pds, b <- pds, isPandigital (a*b)]
