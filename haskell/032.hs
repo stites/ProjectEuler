@@ -25,7 +25,10 @@ isPandigital n = let
 
 pds = [ x | x <- [1..maxNum], isPandigital x ]
 
-solution = Set.size $ Set.fromList [ a * b | a <- pds, b <- pds,
-                                             isPandigital  (a*b)]
-
+solution = Set.size $ Set.fromList [ a * b | a <- [1..maxNum], b <- [1..maxNum],
+                                             a < b,
+                                             isPandigital a,
+                                             isPandigital b,
+                                             isPandigital (a*b),
+                                             (a*b) < maxNum]
 
