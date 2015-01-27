@@ -12,14 +12,10 @@
 tgt = 200
 opts = [1, 2, 5, 10, 20, 50, 100, 200]
 
-isOption s = if(s == 200) then 1 else 0
+coinSum 0 _  = [[]]
+coinSum n [] =  []
+coinSum n coins@(c:rest)
+  | c <= n = map (c:) (coinSum (n-c) coins) ++ coinSum n rest
+  | otherwise = coinSum n rest
 
-bruteForce = sum [isOption(a+b+c+d+e+f+g+h) |
-                                  a <- opts,
-                                  b <- opts,
-                                  c <- opts,
-                                  d <- opts,
-                                  e <- opts,
-                                  f <- opts,
-                                  g <- opts,
-                                  h <- opts]
+solution = length $ coinSum tgt opts
