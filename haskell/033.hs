@@ -12,8 +12,22 @@
 --
 -- If the product of these four fractions is given in its lowest common terms,
 -- find the value of the denominator.
+import Euler
+import qualified Data.Set as Set
+
 nonTrivial a b = let
     notMod10 = ((/=) 0 ).( flip mod 10 )
   in
     (&&) (notMod10 a) (notMod10 b)
 allTerms = [ (a,b) | a <- [10..99], b<-[10..99], a < b, nonTrivial a b ]
+
+isCurious (a,b) = let
+    digitSet = (Set.fromList.digits)
+    aSet = digitSet a
+    aSize = Set.size aSet
+    bSet = digitSet b
+    bSize = Set.size bSet
+  in
+    (Set.size $ Set.union aSet bSet) /= (aSize + bSize)
+
+curiousFractions = foldl (\ acc (a,b) -> acc) [] allTerms

@@ -30,3 +30,5 @@ digitsR :: Integral x => x -> [x]
 digitsR 0 = []
 digitsR x = x `mod` 10 : digitsR (x `div` 10)
 digits = reverse . digitsR
+tuplify2 [x,y] = (x,y)
+digits2 = tuplify2.digits
