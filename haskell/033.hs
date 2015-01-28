@@ -12,3 +12,8 @@
 --
 -- If the product of these four fractions is given in its lowest common terms,
 -- find the value of the denominator.
+nonTrivial a b = let
+    notMod10 = ((/=) 0 ).( flip mod 10 )
+  in
+    (&&) (notMod10 a) (notMod10 b)
+allTerms = [ (a,b) | a <- [10..99], b<-[10..99], a < b, nonTrivial a b ]
