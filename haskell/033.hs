@@ -29,5 +29,11 @@ isCurious (a,b) = let
     bSize = Set.size bSet
   in
     (Set.size $ Set.union aSet bSet) /= (aSize + bSize)
-
+removeDigit (a,b) = let
+    digitSet = (Set.fromList.digits)
+    aSet = digitSet a
+    bSet = digitSet b
+    d = Set.intersection aSet bSet
+  in
+    Set.difference
 curiousFractions = foldl (\ acc (a,b) -> acc) [] allTerms
