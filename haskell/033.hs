@@ -34,10 +34,15 @@ removeDigit (a,b) = let
     aSet = digitSet a
     bSet = digitSet b
     d = Set.intersection aSet bSet
-    getRem s = if (Set.size (diff s) == 0) then Set.elemAt 0 s else Set.elemAt 0 d
+    getRem s = if (Set.size (diff s) == 0) then Set.elemAt 0 s else Set.elemAt 0 $ diff s
                  where diff s = Set.difference s d
   in
     (getRem aSet, getRem bSet)
+checkTuple (a,b) = let
+    t = removeDigit (a,b)
+  in
+     t
+--    (a / b) == ((fst t) / (snd t))
 
 curiousFractions = foldl reduceCurious [] allTerms
   where
