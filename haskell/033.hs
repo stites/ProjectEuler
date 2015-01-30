@@ -36,4 +36,9 @@ removeDigit (a,b) = let
     d = Set.intersection aSet bSet
   in
     Set.difference
-curiousFractions = foldl (\ acc (a,b) -> acc) [] allTerms
+
+curiousFractions = foldl reduceCurious [] allTerms
+  where
+    reduceCurious acc (a,b) = if (isCurious(a,b))
+                              then [(a,b)]++acc
+                              else acc
