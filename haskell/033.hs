@@ -14,6 +14,9 @@
 -- find the value of the denominator.
 import Euler
 import qualified Data.Set as Set
+import Data.Function
+
+divToFloat = (/) `on` fromIntegral
 
 nonTrivial a b = let
     notMod10 = ((/=) 0 ).( flip mod 10 )
@@ -39,13 +42,12 @@ removeDigit (a,b) = let
   in
     (getRem aSet, getRem bSet)
 checkTuple (a,b) = let
-    t = removeDigit (a,b)
+    (x,y) = removeDigit (a,b)
   in
-     t
---    (a / b) == ((fst t) / (snd t))
+    (a `divToFloat` b) == (x `divToFloat` y)
 
 curiousFractions = foldl reduceCurious [] allTerms
   where
-    reduceCurious acc (a,b) = if (isCurious(a,b))
+    reduceCurious acc (a,b) = if (isCurious(a,b) && checkTuple(a,b))
                               then [(a,b)]++acc
                               else acc
