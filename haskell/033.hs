@@ -34,8 +34,10 @@ removeDigit (a,b) = let
     aSet = digitSet a
     bSet = digitSet b
     d = Set.intersection aSet bSet
+    getRem s = if (Set.size (diff s) == 0) then Set.elemAt 0 s else Set.elemAt 0 d
+                 where diff s = Set.difference s d
   in
-    Set.difference
+    (getRem aSet, getRem bSet)
 
 curiousFractions = foldl reduceCurious [] allTerms
   where
