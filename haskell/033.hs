@@ -15,6 +15,7 @@
 import Euler
 import qualified Data.Set as Set
 import Data.Function
+import Data.Ratio
 
 divToFloat = (/) `on` fromIntegral
 
@@ -49,5 +50,7 @@ checkTuple (a,b) = let
 curiousFractions = foldl reduceCurious [] allTerms
   where
     reduceCurious acc (a,b) = if (isCurious(a,b) && checkTuple(a,b))
-                              then [(a,b)]++acc
+                              then (a `divToFloat` b):acc
                               else acc
+
+solution = denominator $ product $ curiousFractions
