@@ -7,10 +7,9 @@
 --
 -- Note: as 1! = 1 and 2! = 2 are not sums they are not included.
 import Euler
-import qualified Data.Set as Set
 
-isCurious n = let
-    digitSet = (Set.fromList.digits)
-    nSet = digitSet n
-  in
-    n == ( foldl (\ acc d -> acc + product [1..d]) 0 $ Set.toList nSet )
+cap = 10000000
+
+isCurious n = n == ( foldl (\ acc d -> acc + product [1..d]) 0 $ digits n )
+
+solution = sum [ x | x<-[3..cap], isCurious x]
