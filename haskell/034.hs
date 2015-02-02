@@ -8,7 +8,7 @@
 -- Note: as 1! = 1 and 2! = 2 are not sums they are not included.
 import Euler
 
-cap = 10000000
+cap = 100000
 
 isCurious n = n == ( foldl (\ acc d -> acc + product [1..d]) 0 $ digits n )
 
