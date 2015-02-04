@@ -7,3 +7,8 @@
 -- 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
 --
 -- How many circular primes are there below one million?
+import Data.List
+import Euler
+cap = 1000000
+allPrimes = primesToNA cap
+circleN n = permutations $ digits n
