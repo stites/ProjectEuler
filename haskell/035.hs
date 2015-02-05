@@ -11,4 +11,4 @@ import Data.List
 import Euler
 cap = 1000000
 allPrimes = primesToNA cap
-circleN n = permutations $ digits n
+circleN n = let n' = permutations $ digits n in map fromDigits n'
