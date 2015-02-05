@@ -9,6 +9,9 @@
 -- How many circular primes are there below one million?
 import Data.List
 import Euler
+import qualified Data.Set as Set
 cap = 1000000
 allPrimes = primesToNA cap
-circleN n = let n' = permutations $ digits n in map fromDigits n'
+circleN n = let n' = nub $ permutations $ digits n in map fromDigits n'
+
+primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
