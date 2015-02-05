@@ -12,6 +12,12 @@ import Euler
 import qualified Data.Set as Set
 cap = 1000000
 allPrimes = primesToNA cap
-circleN n = let n' = nub $ permutations $ digits n in map fromDigits n'
+circleN n acc x = let
+    r = fromDigits $ rotate $ digits n
+  in
+    if (r == x)
+    then r:acc
+    else circleN r (r:acc) x
+  where rotate x = (tail x)++[head x]
 
-primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
+-- primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
