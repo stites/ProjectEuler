@@ -22,3 +22,13 @@ circleN p = subroutine p []
           where rotate x = (tail x)++[head x]
 
 primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
+
+solution = getCircularPrimes allPrimes Set.empty
+  where getCircularPrimes ps s = let
+           nextPs   = circleN $ head ps
+           allPs    = primeCircle nextPs
+           addToSet = not (Set.member (head ps) s) && allPs
+         in
+           if addToSet
+             then getCircularPrimes (tail ps) Set.union s (Set.fromList nextPs)
+             else getCircularPrimes (tail ps) s
