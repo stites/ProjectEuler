@@ -21,4 +21,4 @@ circleN p = subroutine p []
             else subroutine r (r:acc)
           where rotate x = (tail x)++[head x]
 
--- primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
+primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
