@@ -27,6 +27,8 @@ solution = getCircularPrimes allPrimes Set.empty
            allPs    = primeCircle nextPs
            addToSet = not (Set.member (head ps) s) && allPs
          in
-           if addToSet
-             then getCircularPrimes (tail ps) $ Set.union s (Set.fromList $ map fromIntegral nextPs)
-             else getCircularPrimes (tail ps) s
+           if null allPrimes
+              then Set.size s
+              else if addToSet
+                      then getCircularPrimes (tail ps) $ Set.union s (Set.fromList $ map fromIntegral nextPs)
+                      else getCircularPrimes (tail ps) s
