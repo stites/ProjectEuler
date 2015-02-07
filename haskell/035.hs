@@ -28,5 +28,5 @@ solution = getCircularPrimes allPrimes Set.empty
            addToSet = not (Set.member (head ps) s) && allPs
          in
            if addToSet
-             then 1 -- getCircularPrimes (tail ps) $ Set.union s (Set.fromList nextPs)
-             else 0 -- getCircularPrimes (tail ps) s
+             then getCircularPrimes (tail ps) $ Set.union s (Set.fromList $ map fromIntegral nextPs)
+             else getCircularPrimes (tail ps) s
