@@ -11,24 +11,22 @@ import Data.List
 import Euler
 import qualified Data.Set as Set
 cap = 1000000
-allPrimes = primesToNA cap
+allPrimes = primesToNA $ fromIntegral cap
 circleN p = subroutine p []
-  where subroutine n acc = let
-            r = fromDigits $ rotate $ digits n
-          in
-            if (r == p)
+  where subroutine n acc = let r = fromDigits $ rotate $ digits n in
+         if (r == p)
             then r:acc
             else subroutine r (r:acc)
-          where rotate x = (tail x)++[head x]
+         where rotate x = (tail x)++[head x]
 
-primeCircle n = foldl (\acc n' -> (isprime n' == 1) && acc) True $ circleN n
+primeCircle = foldl (\acc n' -> (isprime n' == 1) && acc) True
 
 solution = getCircularPrimes allPrimes Set.empty
   where getCircularPrimes ps s = let
-           nextPs   = circleN $ head ps
+           nextPs   = circleN $ fromIntegral $ head ps
            allPs    = primeCircle nextPs
            addToSet = not (Set.member (head ps) s) && allPs
          in
            if addToSet
-             then getCircularPrimes (tail ps) $ Set.union s (Set.fromList nextPs)
-             else getCircularPrimes (tail ps) s
+             then 1 -- getCircularPrimes (tail ps) $ Set.union s (Set.fromList nextPs)
+             else 0 -- getCircularPrimes (tail ps) s
