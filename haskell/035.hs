@@ -30,5 +30,5 @@ solution = getCircularPrimes allPrimes Set.empty
            addToSet = not (Set.member (head ps) s) && allPs
          in
            if addToSet
-             then getCircularPrimes (tail ps) Set.union s (Set.fromList nextPs)
+             then getCircularPrimes (tail ps) $ Set.union s (Set.fromList nextPs)
              else getCircularPrimes (tail ps) s
