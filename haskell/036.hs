@@ -7,3 +7,5 @@
 --
 -- (Please note that the palindromic number, in either base, may not include
 -- leading zeros.)
+import Euler
+isPal n = (fromDigits.reverse.digits)(n) == n
