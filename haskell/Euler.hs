@@ -36,3 +36,4 @@ fromDigits = foldl addDigit 0
   where addDigit num d = 10*num + d
 
 isPal n = n == (fromDigits.reverse.digits) n
+-- isPal s = (s::String) == (reverse s)
