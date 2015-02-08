@@ -34,3 +34,5 @@ tuplify2 [x,y] = (x,y)
 digits2 = tuplify2.digits
 fromDigits = foldl addDigit 0
   where addDigit num d = 10*num + d
+
+isPal n = n == (fromDigits.reverse.digits) n
