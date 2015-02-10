@@ -8,3 +8,13 @@
 -- (Please note that the palindromic number, in either base, may not include
 -- leading zeros.)
 import Euler
+
+isPal_microOpt val =
+  let
+    subroutine n mag = if (n `div` mag == 0)
+                   then if (n `div` (mag`div`10) == n`mod`10)
+                        then isPal n
+                        else False
+                   else subroutine n $ mag*10
+  in
+   subroutine val 10
