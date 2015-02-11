@@ -35,5 +35,17 @@ digits2 = tuplify2.digits
 fromDigits = foldl addDigit 0
   where addDigit num d = 10*num + d
 
-isPal n = n == (fromDigits.reverse.digits) n
--- isPal s = (s::String) == (reverse s)
+isPal_primary n = n == (fromDigits.reverse.digits) n
+isPal_microOpt val =
+  let
+    subroutine n mag = if (n `div` mag == 0)
+                       then if (n `div` (mag`div`10) == n`mod`10)
+                            then isPal_primary n
+                            else False
+                       else subroutine n $ mag*10
+  in
+   subroutine val 10
+
+isPal = isPal_microOpt
+
+   -- isPal s = (s::String) == (reverse s)
