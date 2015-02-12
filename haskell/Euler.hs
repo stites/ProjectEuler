@@ -1,6 +1,8 @@
 module Euler where
 {-# OPTIONS_GHC -O2 #-}
 import Data.Array.Unboxed
+import Numeric
+import Data.Char
 
 divisors n = [ x | x<-[1..n `div` 2],  n `mod` x == 0]
 d = sum . divisors
@@ -47,5 +49,7 @@ isPal_microOpt val =
    subroutine val 10
 
 isPal = isPal_microOpt
+toBinaryStr n = showIntAtBase 2 intToDigit n ""
+toHexStr n = showIntAtBase 16 intToDigit n ""
 
    -- isPal s = (s::String) == (reverse s)
