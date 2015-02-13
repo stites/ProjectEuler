@@ -37,18 +37,18 @@ digits2 = tuplify2.digits
 fromDigits = foldl addDigit 0
   where addDigit num d = 10*num + d
 
-isPal_primary n = n == (fromDigits.reverse.digits) n
-isPal_microOpt val =
+isNumPal_primary n = n == (fromDigits.reverse.digits) n
+isNumPal_microOpt val =
   let
     subroutine n mag = if (n `div` mag == 0)
                        then if (n `div` (mag`div`10) == n`mod`10)
-                            then isPal_primary n
+                            then isNumPal_primary n
                             else False
                        else subroutine n $ mag*10
   in
    subroutine val 10
 
-isPal = isPal_microOpt
+isPal = isNumPal_microOpt
 toBinaryStr n = showIntAtBase 2 intToDigit n ""
 toHexStr n = showIntAtBase 16 intToDigit n ""
 
