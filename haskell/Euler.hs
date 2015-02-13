@@ -48,8 +48,7 @@ isNumPal_microOpt val =
   in
    subroutine val 10
 
-isPal = isNumPal_microOpt
+isNumPal = isNumPal_microOpt
+isStrPal n = reverse n == n
 toBinaryStr n = showIntAtBase 2 intToDigit n ""
 toHexStr n = showIntAtBase 16 intToDigit n ""
-
-   -- isPal s = (s::String) == (reverse s)
