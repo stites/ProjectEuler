@@ -15,9 +15,10 @@ solve36 val =
   let
     subroutine n sum = if (n < 0)
                        then sum
-                       else if ((isPal n) && (isPal binary n))
+                       else if (isDoublePal n)
                             then subroutine (n-1) (sum+n)
                             else subroutine (n-1) sum
+      where isDoublePal n = (isNumPal n) && (isStrPal $ toBinaryStr n)
   in
     subroutine val 0
 
