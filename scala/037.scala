@@ -38,26 +38,31 @@ object GenuineEratosthenesSieve extends App {
   println(s"Successfully completed without errors. [total ${Platform.currentTime - executionStart} ms]")
 }
 
-val primes = GenuineEratosthenesSieve.sieveOfEratosthenes(100000)
+val primes = GenuineEratosthenesSieve.sieveOfEratosthenes(1000000)
 val elevenPrimes = new ListBuffer[Int]()
 var index = 9
 
-def recursivePrime(n:Int): Boolean = {
+def recursivePrime(n:Int, left:Boolean): Boolean = {
   val nStr = n.toString
   if (nStr.length == 1) {
     primes(n)
-  } else {
-    if (primes(n)) {
-      recursivePrime( parseInt(nStr.tail) )
+  } else if (primes(n)) {
+    if (left) {
+      recursivePrime( parseInt(nStr.tail), left )
     } else {
-      false
+      recursivePrime( parseInt(nStr.init), left )
     }
+  } else {
+    false
   }
 }
 
-while (index < primes.size || elevenPrimes.size < 10) {
-  if (recursivePrime(index) && recursivePrime(parseInt(index.toString.reverse)) ){
+while (index < primes.size || elevenPrimes.size < 11) {
+  if (recursivePrime(index, true) && recursivePrime(index, false) ){
     elevenPrimes += index
+  }
+  if (index % 1000 == 0) {
+    println("index at", index)
   }
   index += 1
 }
