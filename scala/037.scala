@@ -39,8 +39,8 @@ object GenuineEratosthenesSieve extends App {
 }
 
 val primes = GenuineEratosthenesSieve.sieveOfEratosthenes(100000)
-val elevenPrimes = new ListBuffer()
-val index = 0
+val elevenPrimes = new ListBuffer[Int]()
+var index = 0
 
 def recursivePrime(n:Int): Boolean = {
   val nStr = n.toString
@@ -56,8 +56,9 @@ def recursivePrime(n:Int): Boolean = {
 }
 
 while (index < primes.size || elevenPrimes.size < 10) {
-  if (primes(index)){
-    index.toString.head
+  if (recursivePrime(index) && recursivePrime(parseInt(index.toString.reverse)) ){
+    elevenPrimes += index
   }
-  index++
+  index += 1
 }
+
