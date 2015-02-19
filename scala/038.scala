@@ -19,3 +19,10 @@
  * the concatenated product of an integer with (1,2, ... , n) where n > 1?
  *
  */
+
+val cap = 987654321
+val multiples = (1,2,3,4,5,6,7,8,9)
+def isPandigital (n:Int): Boolean = {
+  val nStr = n.toString
+  return nStr.length == 9 && (nStr.length == nStr.distinct.length)
+}
