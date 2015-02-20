@@ -19,10 +19,22 @@
  * the concatenated product of an integer with (1,2, ... , n) where n > 1?
  *
  */
+import java.lang.Integer.parseInt
 
 val cap = 987654321
-val multiples = (1,2,3,4,5,6,7,8,9)
+val multiples = List(1,2,3,4,5,6,7,8,9)
 def isPandigital (n:Int): Boolean = {
   val nStr = n.toString
-  return nStr.length == 9 && (nStr.length == nStr.distinct.length)
+  nStr.length == 9 && (nStr.length == nStr.distinct.length)
+}
+var largest:Int = 191
+var idx = 192
+
+val panDigitalCandidate = multiples.map( _ * idx ).scanLeft("")( (acc, x)=> acc ++ x.toString ).find( _.length == 9 )
+
+if (panDigitalCandidate != None) {
+  val panCandidate = parseInt(panDigitalCandidate.get)
+  if (isPandigital(panCandidate)) {
+    largest = idx
+  }
 }
