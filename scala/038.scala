@@ -26,7 +26,11 @@ val cap = 1000000
 val multiples = Array(1,2,3,4,5,6,7,8,9)
 def isPandigital (n:Int): Boolean = {
   val nStr = n.toString
-  nStr.length == 9 && (nStr.length == nStr.distinct.length)
+  if (nStr.indexOf("0") == -1) {
+    nStr.length == 9 && (nStr.length == nStr.distinct.length)
+  } else {
+    false
+  }
 }
 var largest:Int = 192384576
 var largestStart:Int = 192
