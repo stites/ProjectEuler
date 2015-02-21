@@ -21,20 +21,25 @@
  */
 import java.lang.Integer.parseInt
 
-val cap = 987654321
-val multiples = List(1,2,3,4,5,6,7,8,9)
+//val cap = 987654321 / 2
+val cap = 1000000
+val multiples = Array(1,2,3,4,5,6,7,8,9)
 def isPandigital (n:Int): Boolean = {
   val nStr = n.toString
   nStr.length == 9 && (nStr.length == nStr.distinct.length)
 }
-var largest:Int = 191
+var largest:Int = 192384576
+var largestStart:Int = 192
 var idx = 192
 
-val panDigitalCandidate = multiples.map( _ * idx ).scanLeft("")( (acc, x)=> acc ++ x.toString ).find( _.length == 9 )
-
-if (panDigitalCandidate != None) {
-  val panCandidate = parseInt(panDigitalCandidate.get)
-  if (isPandigital(panCandidate)) {
-    largest = idx
+while (idx < cap) {
+  val panDigitalCandidate = multiples.map( _ * idx ).filter( _ <= 987654321 ).scanLeft("")( (acc, x)=> acc ++ x.toString ).find( _.length == 9 )
+  if (panDigitalCandidate != None) {
+    val panCandidate = parseInt(panDigitalCandidate.get)
+    if (isPandigital(panCandidate) && panCandidate > largest) {
+      largest = panCandidate
+      largestStart = idx
+    }
   }
+  idx += 1
 }
