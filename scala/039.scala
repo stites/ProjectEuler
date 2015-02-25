@@ -9,23 +9,20 @@
  *
  * For which value of p ≤ 1000, is the number of solutions maximised?
  */
-import scala.collection.mutable.ListBuffer
 
-def isRight (a:Int, b:Int, c:Int): Boolean = { a*a + b*b == c*c }
+var solution = 0
+var resultSolutions = 0
 
-def getSides (perimeter:Int): Int = {
-  var sides = ListBuffer<_>();
-
-  for (a <- 1 to perimeter/2){
-    for (b <- 1 to a) {
-      var c = perimeter-a-b;
-
-      if (isRight(a,b,c)) {
-        sides += List(a,b,c)
-      }
+for (p <- 2 until 1000 by 2) {
+  var numberOfSolutions = 0
+  for (a <- 2 to (p/3) ) {
+    if(p*(p-2*a) % (2*(p-a)) == 0){
+      numberOfSolutions += 1
     }
   }
-
-  return 1
+  if(numberOfSolutions > resultSolutions){
+    resultSolutions = numberOfSolutions
+    solution = p
+  }
 }
-val example = getSides(120)
+
