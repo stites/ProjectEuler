@@ -18,24 +18,26 @@
 
 // d_1 000 000
 val cap = 1000000
-var currentWindow = "1"
-var len = 0
-var solution = 1
-var x = 1
+var window = ""
 var nextMod = 1
-var windowSize = 0
-var cached = 0
-while (len < cap) {
-  currentWindow = x.toString
-  len += currentWindow.length
-  for (a <- x.toString.length to len) {
-    cached = a
-    if (a % nextMod == 0) {
-      windowSize = a - currentWindow.length
-      nextMod *= 10
-      solution *= currentWindow.charAt(windowSize).toInt
-    }
+var solution = 1
+
+for (x <- 1 to cap) {
+  window += x.toString
+  if (window.length % 1000 == 0) { println(window.length) }
+
+  if (window.length >= nextMod) {
+    solution *= window.charAt(nextMod - 1).toString.toInt
+    window = window.substring(nextMod - 1,window.length)
+    nextMod *= 10
+
+    println(solution)
   }
-  x += 1
 }
+
+//var n = 1
+//while (n < cap) {
+//  n *= nextMod
+//  nextMod *= 10
+//}
 
