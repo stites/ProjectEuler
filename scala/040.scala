@@ -21,17 +21,29 @@ val cap = 1000000
 var window = ""
 var nextMod = 1
 var solution = 1
+var addedLen = 0
+var idx = 0
+var cacheSize = 1000
 
 for (x <- 1 to cap) {
   window += x.toString
-  if (window.length % 1000 == 0) { println(window.length) }
 
-  if (window.length >= nextMod) {
-    solution *= window.charAt(nextMod - 1).toString.toInt
-    window = window.substring(nextMod - 1,window.length)
+  if (window.length % cacheSize == 0) {
+    println("cache", window.length)
+
+    idx = (window.length / cacheSize) - addedLen - 1
+    addedLen += window.length
+
+    window = window.substring(idx, window.length)
+  }
+
+  if ((window.length+addedLen) >= nextMod) {
+    idx = nextMod - addedLen - 1
+    val x = window.charAt(idx).toString.toInt
+    solution *= x
     nextMod *= 10
 
-    println(solution)
+    println("solution", solution, x)
   }
 }
 
