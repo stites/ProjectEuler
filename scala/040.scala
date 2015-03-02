@@ -18,27 +18,27 @@
 
 // d_1 000 000
 val cap = 1000000
-var window = ""
+var window = "1"
 var nextMod = 1
 var res = 1
 var addedLen = 0
-var idx = 0
 var x = 1
 
 def solve40 (window:String, addedLen:Int, x:Int, nextMod:Int, res:Int, cap:Int): Int = {
   if (nextMod == cap) {
+    println("solution", nextMod)
     return res
   } else {
     val cacheSize = 1000
 
     if (window.length % cacheSize == 0) {
-      val idx = (window.length / cacheSize) - addedLen - 1
-      println("cache", window.length)
-      solve40(window.substring(idx,window.length), addedLen+window.length, x+1, nextMod*10, res*x, cap)
+      println("cache", addedLen+window.length)
+      solve40(window.substring(0,window.length), addedLen+window.length, x+1, nextMod, res*x, cap)
     } else if ((window.length+addedLen) >= nextMod) {
-      val x = window.charAt(nextMod - addedLen - 1).toString.toInt
-      println("solution", nextMod, res, x)
-      solve40(window+x.toString, addedLen, x+1, nextMod*10, res*x, cap)
+      val idx = window.length + addedLen - nextMod
+      val x = window.charAt(idx).toString.toInt
+      println("solution", nextMod, res)
+      solve40(window.substring(idx,window.length), addedLen+idx, x+1, nextMod*10, res*x, cap)
     } else {
       solve40(window+x.toString, addedLen, x+1, nextMod, res, cap)
     }
