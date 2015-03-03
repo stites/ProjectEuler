@@ -44,5 +44,6 @@ def solve40 (window:String, addedLen:Int, x:Int, nextMod:Int, res:Int, cap:Int):
     }
   }
 }
+// rollback to bruteforce 210 value - work on this one later. it's a one-off
 var solution = solve40(window, addedLen, x, nextMod, res, cap)
 
