@@ -1,3 +1,7 @@
+package solutions
+
+import common._
+
 /*
  * Truncatable primes
  * Problem 37
@@ -16,34 +20,37 @@
 import scala.collection.mutable.ListBuffer
 import java.lang.Integer.parseInt
 
-val primes = sieveOfEratosthenes(1000000)
-val elevenPrimes = new ListBuffer[Int]()
-var index = 9
+object q037 {
 
-def recursivePrime(n:Int, left:Boolean): Boolean = {
-  val nStr = n.toString
-  if (nStr.length == 1) {
-    primes(n)
-  } else if (primes(n)) {
-    if (left) {
-      recursivePrime( parseInt(nStr.tail), left )
+  val primes = sieveOfEratosthenes(1000000)
+  val elevenPrimes = new ListBuffer[Int]()
+  var index = 9
+
+  def recursivePrime(n:Int, left:Boolean): Boolean = {
+    val nStr = n.toString
+    if (nStr.length == 1) {
+      primes(n)
+    } else if (primes(n)) {
+      if (left) {
+        recursivePrime( parseInt(nStr.tail), left )
+      } else {
+        recursivePrime( parseInt(nStr.init), left )
+      }
     } else {
-      recursivePrime( parseInt(nStr.init), left )
+      false
     }
-  } else {
-    false
   }
+
+  while (index < primes.size || elevenPrimes.size < 11) {
+    if (recursivePrime(index, true) && recursivePrime(index, false) ){
+      elevenPrimes += index
+    }
+    if (index % 1000 == 0) {
+      println("index at", index)
+    }
+    index += 1
+  }
+
+  val solution = elevenPrimes.reduceLeft((acc, n) => acc + n)
+
 }
-
-while (index < primes.size || elevenPrimes.size < 11) {
-  if (recursivePrime(index, true) && recursivePrime(index, false) ){
-    elevenPrimes += index
-  }
-  if (index % 1000 == 0) {
-    println("index at", index)
-  }
-  index += 1
-}
-
-val solution = elevenPrimes.reduceLeft((acc, n) => acc + n)
-
