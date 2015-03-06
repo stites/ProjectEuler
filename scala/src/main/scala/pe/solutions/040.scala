@@ -1,4 +1,4 @@
-package solutions
+package pe.solutions
 
 /*
  * Champernowne's constant

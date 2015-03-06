@@ -1,4 +1,4 @@
-package solutions
+package pe.solutions
 
 /*
  * Pandigital multiples
