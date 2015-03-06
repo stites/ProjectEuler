@@ -1,3 +1,5 @@
+package solutions
+
 /*
  * Pandigital prime
  * Problem 41
@@ -10,3 +12,6 @@
  *
  */
 
+object q041 {
+
+}

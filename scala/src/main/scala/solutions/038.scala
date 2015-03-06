@@ -1,3 +1,5 @@
+package solutions
+
 /*
  * Pandigital multiples
  * Problem 38
@@ -19,31 +21,38 @@
  * the concatenated product of an integer with (1,2, ... , n) where n > 1?
  *
  */
+
 import java.lang.Integer.parseInt
 
-//val cap = 987654321 / 2
-val cap = 1000000
-val multiples = Array(1,2,3,4,5,6,7,8,9)
-def isPandigital (n:Int): Boolean = {
-  val nStr = n.toString
-  if (nStr.indexOf("0") == -1) {
-    nStr.length == 9 && (nStr.length == nStr.distinct.length)
-  } else {
-    false
-  }
-}
-var largest:Int = 192384576
-var largestStart:Int = 192
-var idx = 192
+object q038 {
 
-while (idx < cap) {
-  val panDigitalCandidate = multiples.map( _ * idx ).filter( _ <= 987654321 ).scanLeft("")( (acc, x)=> acc ++ x.toString ).find( _.length == 9 )
-  if (panDigitalCandidate != None) {
-    val panCandidate = parseInt(panDigitalCandidate.get)
-    if (isPandigital(panCandidate) && panCandidate > largest) {
-      largest = panCandidate
-      largestStart = idx
+  //val cap = 987654321 / 2
+  val cap = 1000000
+  val multiples = Array(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+  def isPandigital(n: Int): Boolean = {
+    val nStr = n.toString
+    if (nStr.indexOf("0") == -1) {
+      nStr.length == 9 && (nStr.length == nStr.distinct.length)
+    } else {
+      false
     }
   }
-  idx += 1
+
+  var largest: Int = 192384576
+  var largestStart: Int = 192
+  var idx = 192
+
+  while (idx < cap) {
+    val panDigitalCandidate = multiples.map(_ * idx).filter(_ <= 987654321).scanLeft("")((acc, x) => acc ++ x.toString).find(_.length == 9)
+    if (panDigitalCandidate != None) {
+      val panCandidate = parseInt(panDigitalCandidate.get)
+      if (isPandigital(panCandidate) && panCandidate > largest) {
+        largest = panCandidate
+        largestStart = idx
+      }
+    }
+    idx += 1
+  }
+
 }
