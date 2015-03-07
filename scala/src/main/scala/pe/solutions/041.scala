@@ -1,5 +1,7 @@
 package pe.solutions
 
+import common._
+
 /*
  * Pandigital prime
  * Problem 41
@@ -13,5 +15,14 @@ package pe.solutions
  */
 
 object q041 {
+
+  val primes = sieveOfEratosthenes(10000)
+  var solution = 2143
+  for ( p <- primes ) {
+    var pStr = p.toString
+    if (pStr.toSet.size == pStr.length) {
+      if (p > solution) solution = p
+    }
+  }
 
 }
