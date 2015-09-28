@@ -10,6 +10,7 @@ import Euler
 
 cap = 100000
 
-isCurious n = n == ( foldl (\ acc d -> acc + product [1..d]) 0 $ digits n )
+isCurious n = n == foldl (\ acc d -> acc + product [1..d]) 0 $ digits n
 
 solution = sum [ x | x<-[3..cap], isCurious x]
+
